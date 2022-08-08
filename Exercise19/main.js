@@ -1,9 +1,7 @@
-
 const ChangeOfState = document.querySelector(".ChangeOfState");
 const displayText = document.querySelector(".log");
 const inputTest = document.querySelector("input");
 const buttons = document.querySelectorAll("button")
-
 
 ChangeOfState.addEventListener('click', function (e) {
     console.log(e);
@@ -24,14 +22,14 @@ ChangeOfState.addEventListener('click', function (e) {
         })
     }
 });
-
 ////2
 const todoAdd = document.querySelector(".todoButton");
 const inputText1 = document.querySelector("input");
-const listTasks = document.querySelector(".listTasks")
-const TaskListTemplate = document.createElement('table')
+const listTasks = document.querySelector(".listTasks");
+const doneButton = document.querySelector(".doneButton");
 
 let taskList = [];
+
 
 //שדה הוספה למערך 
 function requiredText(inputtx) {
@@ -41,18 +39,56 @@ function requiredText(inputtx) {
     }
     return true;
 }
-
 todoAdd.addEventListener("click", function () {
-    requiredText(inputText1.value)
-    taskList.push(inputText1.value);
+    if (!requiredText(inputText1.value)) {
+        return
+    }
+    const nweToDo = {
+        title: inputText1.value, isCompleted: false, id: Date.now(),
+        isdelet: false
+    }
+    taskList.push(nweToDo);
+    listTasks.innerHTML = ''
+    taskList.forEach((task) => {
+        const DeleteButton = document.createElement('button');
+        const TaskDoneButton = document.createElement('button');
+        const taskDiv = document.createElement("div")
+        const taskTitle = document.createElement("span")
+        const buttonContainer = document.createElement("div")
+
+        taskDiv.classList.add("task-container")
+
+        taskTitle.innerText = task.title
+        DeleteButton.innerText = 'DELETE'
+        TaskDoneButton.innerText = 'DONE'
+
+        // ביצוע מחיקה מהרשימה
+        DeleteButton.addEventListener('click', function (e) {
+            taskDiv.remove();
+            taskList.splice(task);
+            console.log(taskList);
+
+        })
+
+        //כפתור בוצע
+        TaskDoneButton.addEventListener('click', function (e) {
+            console.log(e)
+
+
+        })
+
+        buttonContainer.append(DeleteButton, TaskDoneButton)
+        taskDiv.append(taskTitle, buttonContainer)
+
+        listTasks.appendChild(taskDiv)
+
+    })
+    document.querySelector("input").value = ''
     console.log(taskList);
-    document.querySelector("input").value = '' 
-    console.log(taskList);
+    listTasks.style.overflow = "scroll";
 })
 
-taskList.forEach((item) => {
-    TaskListTemplate.innerText = item;
-    
+doneButton.addEventListener('click', function (e) {
+    console.log(e)
 })
 
-listTasks.appendChild(TaskListTemplate);

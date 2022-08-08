@@ -46,6 +46,9 @@ body {
 
 .listTasks {
     height: 351px;
+    overflow:auto;
+    display: flex;
+    flex-direction: column;
 
 }
 input{
@@ -64,4 +67,12 @@ input{
 
 button:hover{
     cursor: pointer;
+}
+
+.task-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 5px solid #ff0015;
+   
 }
