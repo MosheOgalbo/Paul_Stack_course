@@ -1,0 +1,67 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.outerWindow {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    justify-content: center;
+
+}
+
+.InternalWindow {
+    width: 500px;
+    height: 100%;
+    top: 25vh;
+    color: red;
+    cursor: crosshair;
+    
+}
+
+
+.log {
+    border: 5px solid #FFFF00;
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    width: 99%;
+    text-align: center;
+    flex-direction: column;
+}
+
+.log>input~div {
+    display: flex;
+    width: 100%;
+}
+
+.actionButtons {
+    width: 100rem;
+}
+
+.listTasks {
+    height: 351px;
+
+}
+input{
+    text-align: center;
+
+}
+.ChangeView{
+     background-color:white;
+   
+}
+.ChangeOfState{
+    width: 100%;
+    padding: 1rem;
+    
+}
+
+button:hover{
+    cursor: pointer;
+}
