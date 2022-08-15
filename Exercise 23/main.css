@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:last baseline;
+}
+
+body>div {
+
+    display: flex;
+    width: 20pc;
+    height:5pc;
+    justify-content:flex-end;
+    flex-wrap:wrap;
+    border: 1px solid rgb(65, 18, 234);
+    text-align:left;
+    flex-direction:column;
+}
+
+.api1{
+    
+    float:inline-end;
+    width: 15pc;;
+    height: 15pc;
+    display: flex;
+    flex-wrap:wrap-reverse;
+    justify-content:end;
+
+}

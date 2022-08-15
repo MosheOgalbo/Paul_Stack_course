@@ -27,11 +27,11 @@ const todoAdd = document.querySelector(".todoButton");
 const inputText1 = document.querySelector("input");
 const listTasks = document.querySelector(".listTasks");
 const doneButton = document.querySelector(".doneButton");
-
+ let dontAsck=[]
 let taskList = [];
 
 
-//שדה הוספה למערך 
+//בודק את ערך השדה 
 function requiredText(inputtx) {
     if (inputtx.length === 0) {
         alert("No entry entered Please enter a new entry");
@@ -39,13 +39,18 @@ function requiredText(inputtx) {
     }
     return true;
 }
-todoAdd.addEventListener("click", function () {
+//שדה הוספה למערך 
+todoAdd.addEventListener("click", function (e) {
+    
+    console.log(e)
     if (!requiredText(inputText1.value)) {
         return
     }
+    else if(e){
+
+    }
     const nweToDo = {
         title: inputText1.value, isCompleted: false, id: Date.now(),
-        isdelet: false
     }
     taskList.push(nweToDo);
     listTasks.innerHTML = ''
@@ -73,7 +78,12 @@ todoAdd.addEventListener("click", function () {
         //כפתור בוצע
         TaskDoneButton.addEventListener('click', function (e) {
             console.log(e)
+            task.isCompleted = true
+            dontAsck.push(task);
+            //taskList.splice(task);
+            taskDiv.remove();
 
+            console.log(task.isCompleted)
 
         })
 
@@ -85,10 +95,40 @@ todoAdd.addEventListener("click", function () {
     })
     document.querySelector("input").value = ''
     console.log(taskList);
-    listTasks.style.overflow = "scroll";
 })
 
 doneButton.addEventListener('click', function (e) {
-    console.log(e)
+    console.log(taskList)
+    listTasks.innerHTML = ''
+
+    dontAsck.forEach((task) => {
+        
+      
+        const DeleteButton = document.createElement('button');
+        const taskDiv = document.createElement("div")
+        const taskTitle = document.createElement("span")
+        const buttonContainer = document.createElement("div")
+
+
+        taskDiv.classList.add("task-container");
+
+
+        taskTitle.innerText = task.title;
+        DeleteButton.innerText = 'DELETE'
+
+
+
+        // ביצוע מחיקה מהרשימה
+        DeleteButton.addEventListener('click', function (e) {
+            taskDiv.remove();
+            taskList.splice(task);
+            console.log(taskList);
+
+        })
+        buttonContainer.append(DeleteButton)
+        taskDiv.append(taskTitle, buttonContainer)
+
+        listTasks.appendChild(taskDiv)
+    })
 })
 
