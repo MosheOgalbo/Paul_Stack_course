@@ -102,29 +102,49 @@ const UserList = async () => {
         const response = await fetch('https://reqres.in/api/users')
         const data = await response.json()
         //console.log(data);
-        document.body.innerHTML= " "
+        document.body.innerHTML = " "
         data.data.forEach((item) => {
             //console.log(item);
-            
+
             const div = document.createElement("div");
             const span1 = document.createElement("span");
             const span2 = document.createElement("span");
-            const span3 =document.createElement('samp')
-            const itemImg= document.createElement('img')
+            const span3 = document.createElement('samp')
+            const itemImg = document.createElement('img')
+            const userInformation =document.createElement('button')
 
             span1.innerText = item.last_name;
-            span3.innerText=item.first_name;
+            span3.innerText = item.first_name;
             span2.innerText = item.email;
             itemImg.src = item.avatar;
-            
-            div.append(span1,span3,span2,itemImg);
-            document.body.appendChild(div);
+            userInformation.innerText ="user information"
 
+            userInformation.addEventListener('click',function(e){
+                moreDetails(item.id)
+            })
+
+            div.append(span1, span3, span2, itemImg,userInformation);
+            document.body.appendChild(div);
+          
         })
     }
     catch (error) {
         console.log(error)
     }
 }
-
 UserList();
+
+const moreDetails = async (num) => {
+    try {
+        const response = await fetch(`https://reqres.in/api/users/${num}`)
+        const data = await response.json()
+        //console.log(data);
+        console.log(data.data);
+        window.alert(data.data.id+"\n"+data.data.last_name)
+    }
+    catch (error) {
+        console.error
+    }
+}
+
+//moreDetails()
