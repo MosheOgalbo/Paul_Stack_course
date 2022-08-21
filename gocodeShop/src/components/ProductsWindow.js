@@ -13,7 +13,7 @@ const ProductsWindow = () => {
             const data = await responseApi.json()
             console.log(data)
             setListOpject(data)
-
+            setChangeView(false)
 
         } catch (e) {
             console.log(e)
@@ -25,10 +25,7 @@ const ProductsWindow = () => {
         
 
     }, [])
-    // useEffect(()=>{
-    //     setChangeView(true)
-    //     console.log(changeView)
-    // },[])
+   
 
     const productListDisplay = listOpject.map((element, index) => (
 
@@ -46,8 +43,9 @@ const ProductsWindow = () => {
 
   
         <>
+        
             {changeView ?
-                <section className='loader'>{setTimeout(()=>{setChangeView(false)},200)}</section>
+                <section className='loader'>{setChangeView(false)}</section>
                 : <section className="products">{productListDisplay}</section>}
         </>
 
