@@ -1,7 +1,8 @@
 import React from 'react'
 import './ProductForDisplay.css'
 
- const ProductForDisplay = ({ title, image, category, price }) => {
+const ProductForDisplay = ({ title, image, category, price,functioButton}) => {
+
     return (
         <div className="product-card">
             <p className="Product-description ">
@@ -16,6 +17,11 @@ import './ProductForDisplay.css'
                 <h5>{category}</h5>
                 <h6>${price}</h6>
             </div>
+            <button className='addButton'
+                onClick={() => functioButton() = 'was added'}
+                tyle={{ cursor: "pointer" }}>
+                Added to shopping cart
+            </button>
         </div>
     )
 }

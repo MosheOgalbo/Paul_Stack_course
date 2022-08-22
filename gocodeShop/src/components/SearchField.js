@@ -4,16 +4,17 @@ import ProductFiltering from './ProductFiltering'
 import ProductSorting from './ProductSorting'
 
 const SearchField = () => {
+
   return (
     <nav className="product-filter">
-            <h1>Jackets</h1>
+      <h1>Jackets</h1>
 
-            <div className="sort">
-                <ProductFiltering />
-                <ProductSorting />
+      <div className="sort">
+        <ProductFiltering />
+        <ProductSorting />
 
-            </div>
-        </nav>
+      </div>
+    </nav>
   )
 }
 

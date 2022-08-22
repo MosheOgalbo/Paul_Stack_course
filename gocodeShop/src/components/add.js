@@ -1,4 +1,7 @@
 //rafce מוסיפה תבנית אוטומתית 
+
+
+
 import React from 'react'
 
 const add = () => {
