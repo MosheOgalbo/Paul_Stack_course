@@ -1,29 +1,29 @@
 import './App.css';
 import SearchField from './components/SearchField'
 import ProductsWindow from './components/ProductsWindow'
-import { useApiData } from './customHooks/useApiData';
-import { MyContext } from './components/MyContext'
-import React, { useEffect, useState } from 'react'
-import ProductForDisplay from './components/ProductForDisplay'
+import MyValue from './MyValue';
+import MyContext from './MyContext'
+import { useState,useEffect} from 'react';
+import React, { useContext } from 'react'
 
-function App() {
-   const [listOpject, setListOpject] = useState([])
+function App({ AddProductToCart }) {
 
-  const test = 'https://fakestoreapi.com/products/'
-  listOpject = useApiData({test })
-  console.log(listOpject)
+  const [filterValueInArray, setFilterValueInArray] = useState([]);
+  const { listOpject } = useContext(MyContext);
 
-  setListOpject( listOpject.map(p => p.category).filter((value, index, array) => 
-  array.indexOf(value) === index))
+  useEffect(()=>{
+    setFilterValueInArray(filterValueInArray)
 
+  },[listOpject])
 
   return (
-    <MyContext.Provider value={[listOpject,setListOpject]}>
+    <MyValue.Provider value={{filterValueInArray}}>
       <div className="flexColumn">
         <SearchField />
-        <ProductsWindow />
+        <ProductsWindow AddProductToCart={AddProductToCart} />
       </div>
-    </MyContext.Provider>
+    </MyValue.Provider>
+
   );
 }
 

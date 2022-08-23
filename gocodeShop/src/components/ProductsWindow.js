@@ -1,33 +1,38 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import './ProductsWindow.css'
 import ProductForDisplay from './ProductForDisplay'
-import { MyContext } from './MyContext'
+import MyContext from '../MyContext'
 
 
-const ProductsWindow = () => {
+const ProductsWindow = ({ AddProductToCart }) => {
 
-    const { listOpject, changeView } = useContext(MyContext);
-//פונקציה הוסף לסל 
-const wasAdded =()=>{
+    const { listOpject, filteredProducts } = useContext(MyContext);
 
-}
+    
+    const customList = filteredProducts.length > 0 ? filteredProducts : listOpject
 
-    const productListDisplay = listOpject.map((element, index) => (
+    const productListDisplay = customList.map((element, index) => (
         <ProductForDisplay
             key={(index)}
             title={element.title}
             image={element.image}
             category={element.category}
             price={element.price}
-            functioButton={wasAdded}
+            functioButton={() => AddProductToCart(element)}
         />
     ));
+
+    //להוסיף פונקציה מיון
+
+    if (!listOpject && !filteredProducts) {
+        return <section className='loader'>{ }</section>
+    }
+
+
     return (
-        <>
-            {listOpject ?
-                <section className='loader'>{ }</section>
-                : <section className="products">{productListDisplay}</section>}
-        </>
+
+        <section className="products">{productListDisplay}</section>
+
 
     )
 
