@@ -6,7 +6,7 @@ import MyContext from './MyContext'
 import { useState,useEffect} from 'react';
 import React, { useContext } from 'react'
 
-function App({ test }) {
+function App({ addProductToCart }) {
 
   const [filterValueInArray, setFilterValueInArray] = useState([]);
   const { listOpject } = useContext(MyContext);
@@ -20,7 +20,7 @@ function App({ test }) {
     <MyValue.Provider value={{filterValueInArray}}>
       <div className="flexColumn">
         <SearchField />
-        <ProductsWindow test={test} />
+        <ProductsWindow addProductToCart={addProductToCart} />
       </div>
     </MyValue.Provider>
 

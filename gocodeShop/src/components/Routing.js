@@ -26,7 +26,7 @@ const Routing = () => {
         getProductsApi();
     }, []);
 
-    const test = (product) => {
+    const addProductToCart = (product) => {
         const productInCart = cart.findIndex((item) => item.id === product.id);
         if (productInCart === -1) {
             const newProductToCart = { ...product, amount: 1 };
@@ -82,7 +82,7 @@ const Routing = () => {
 
                 {isLoggedIn ? (
                     <Routes>
-                        <Route path="/" element={<App test={test} />} />
+                        <Route path="/" element={<App addProductToCart={addProductToCart} />} />
                         <Route path="main" element={<App />} />
                         <Route path="cart" element={<Cart />} />
                         <Route path="Admin" element={<ProductManagementForm setListOpject={setListOpject} categories={categories} />} />

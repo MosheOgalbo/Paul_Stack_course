@@ -2,15 +2,15 @@ import React from 'react'
 import './ProductForDisplay.css'
 import { useNavigate } from "react-router-dom";
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
+// import Typography from '@mui/material/Typography';
+// import { Button, CardActionArea, CardActions } from '@mui/material';
 
 
 
-const ProductForDisplay = ({ title, image, category, price, functioButton, element }) => {
+const ProductForDisplay = ({ title, image, category, price, functioButton }) => {
 
     const navigate = useNavigate()
 
@@ -35,7 +35,7 @@ const ProductForDisplay = ({ title, image, category, price, functioButton, eleme
                         <h6>${price}</h6>
                     </div>
                     <button className='addButton'
-                        onClick={() =>functioButton(element)}
+                        onClick={functioButton}
                         style={{ cursor: "pointer" }}>
                         Added to shopping cart
                     </button>

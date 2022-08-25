@@ -4,7 +4,7 @@ import ProductForDisplay from './ProductForDisplay'
 import MyContext from '../MyContext'
 
 
-const ProductsWindow = ({ test }) => {
+const ProductsWindow = ({ addProductToCart }) => {
 
     const { listOpject, filteredProducts } = useContext(MyContext);
 
@@ -19,7 +19,7 @@ const ProductsWindow = ({ test }) => {
             category={element.category}
             price={element.price}
             element={element}
-            functioButton={test}
+            functioButton={() => addProductToCart(element)}
         />
     ));
 
