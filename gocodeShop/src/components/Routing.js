@@ -6,6 +6,8 @@ import HomePage from "./HomePage"
 import NotFound from "./NotFound";
 import MyContext from "../MyContext";
 import ProductManagementForm from './ProductManagementForm'
+import Toolbar from '@mui/material/Toolbar';
+
 
 const Routing = () => {
     let isLoggedIn = true
@@ -24,7 +26,7 @@ const Routing = () => {
         getProductsApi();
     }, []);
 
-    const AddProductToCart = (product) => {
+    const test = (product) => {
         const productInCart = cart.findIndex((item) => item.id === product.id);
         if (productInCart === -1) {
             const newProductToCart = { ...product, amount: 1 };
@@ -63,17 +65,24 @@ const Routing = () => {
             value={{ listOpject, filterProductsByCategory, filteredProducts, cart, categories }}
         >
             <BrowserRouter>
-                <button value={"./"} >home</button>
+
+                <Toolbar variant="dense">
+                    <button value={"./"} >home</button>
+                </Toolbar>
+
+                {/* <Toolbar classes={"gutters"}> */}
+
                 <div>
                     <Link to="homePage"> home </Link>
                     <Link to="main">main</Link>
                     <Link to="Admin"> Admin </Link>
                     <Link to="cart"> cart </Link>
-
                 </div>
+                {/* </Toolbar> */}
+
                 {isLoggedIn ? (
                     <Routes>
-                        <Route path="/" element={<App AddProductToCart={AddProductToCart} />} />
+                        <Route path="/" element={<App test={test} />} />
                         <Route path="main" element={<App />} />
                         <Route path="cart" element={<Cart />} />
                         <Route path="Admin" element={<ProductManagementForm setListOpject={setListOpject} categories={categories} />} />
@@ -83,7 +92,7 @@ const Routing = () => {
                 ) :
 
                     <Routes>
-                       <Route path="homePage" element={<HomePage />} />
+                        <Route path="homePage" element={<HomePage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>}
 

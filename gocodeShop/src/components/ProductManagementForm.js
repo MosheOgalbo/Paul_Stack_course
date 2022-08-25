@@ -1,40 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './ProductManagementForm.css'
 
 
-const ProductManagementForm = ({ categories, setListOpject }) => {
+const ProductManagementForm = ({ categories, setListOpject ,listOpject}) => {
+
+    const [texts, setTexts] = useState([])
+    const [error, setError] = useState([])
 
     const [description, setDescription] = useState('')
     const [price, setPrice] = useState('')
     const [image, setImage] = useState('')
     const [category, setCategory] = useState('')
     const [title, setTitle] = useState('')
-    const [error, setError] = useState([])
+
 
     const CheckingFieldValues = () => {
-        //  debugger
+         debugger
         setError([])
+
         let isValid = true
 
-        if ((title && title.length < 8) || title.length > 20) {
+        if ((title && title.length < 2) || title.length > 20) {
+            isValid = false
             setError(prev => [...prev, 'the title is too short or too long, check it please'])
-            isValid = false
+
         }
-        if ((description && description.length < 8) || description.length > 22) {
-            setError(prev => [...prev, 'the description is too short or too long, check it please'])
+        if ((description && description.length < 2) || description.length > 22) {
             isValid = false
+            setError(prev => [...prev, 'the description is too short or too long, check it please'])
         }
         if (price === 0 || price < 0) {
+            isValid = false
             setError(prev => [...prev, 'no one sells things for free :)'])
-            isValid = false
         }
-        if (price > 999) {
-            setError(prev => [...prev, 'too high of a price, i will call mas hanchasa'])
+        if (price > 100) {
             isValid = false
+            setError(prev => [...prev, 'too high of a price, i will call mas hanchasa'])
+        }
+        if(!image ){
+            isValid = false
+            setError(prev => [...prev, 'There is no value in the image field'])
         }
         if (!category || !image || !description || !title || !price) {
-            setError(prev => [...prev, 'one of the mandatory fields is not enlisted'])
             isValid = false
+            setError(prev => [...prev, 'one of the mandatory fields is not enlisted'])
         }
 
         if (!isValid) {
@@ -47,6 +56,7 @@ const ProductManagementForm = ({ categories, setListOpject }) => {
             id: Date.now(), title, description, price, category, image: image, rating: { rate: 5.0, count: 130 }
         }
         setListOpject(prev => [newProduct, ...prev])
+
         setTitle('')
         setDescription('')
         setImage('')
@@ -54,61 +64,78 @@ const ProductManagementForm = ({ categories, setListOpject }) => {
         setCategory('')
 
         console.log(categories)
+        console.log(error)
+        {console.log(listOpject)}
 
     }
+    useEffect(() => {
+
+        setTexts(error)
+    }, [error])
+
 
     return (
         <div className='AdminPageContainer'>
-            <form  >
+            <form >
                 <div className='InputWrapper'>
-                    <label >
+
+                    <label onClick={() => setTexts([])}>
                         Title:
-                        <input role="presentation" autoComplete="off" type="text" name="description"
-                            onChange={(e) => setTitle(e.target.value)} />
+                        <input value={title} role="presentation" autoComplete="off" type="text" name="description"
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
 
                     </label>
                 </div>
                 <div className='InputWrapper'>
-                    <label >
+                    <label onClick={() => setTexts([])}>
                         description:
-                        <input role="presentation" autoComplete="off" type="text" name="description"
-                            onChange={(e) => setDescription(e.target.value)} />
+                        <input value={description} role="presentation" autoComplete="off" type="text" name="description"
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
 
                     </label >
                 </div>
 
                 <div className='InputWrapper'>
-                    <label >
+                    <label onClick={() => setTexts([])}>
                         price:
-                        <input role="presentation" autoComplete="off"
-                            type="number" name="price" onChange={(e) => setPrice(e.target.value)} />
+                        <input value={price} role="presentation" autoComplete="off"
+                            type="number" name="price" onChange={(e) => setPrice(e.target.value)}
+                        />
                     </label>
                 </div>
                 <div className='InputWrapper'>
-                    <label >
+                    <label onClick={() => setTexts([])} >
                         imageUrl:
-                        <input role="presentation" autoComplete="off"
-                            type="text" name="image" onChange={(e) => setImage(e.target.value)} />
+                        <input value={image} role="presentation" autoComplete="off"
+                            type="text" name="image" onChange={(e) => setImage(e.target.value)}
+                        />
                     </label>
                 </div>
                 <div className='InputWrapper'>
-                    <label >
+                    <label onClick={() => setTexts([])}>
+
                         category:
-                        <select>
-                            <option value=" ">Please select a value</option>
+                        <select value={category} onChange={(e) => setCategory(e.target.value)} name="choice" autoComplete="off" required>
+                            <option value="">Please select a value</option>
                             {categories.map((category, index) =>
-                                <option key={index} value={category}>{category}</option>)}
+                                <option key={index} value={category}>{category} </option>)}
                         </select>
 
                     </label></div>
 
                 <div className='InputWrapper'>
-                    <button className='buttonSubmit' type="submit" onClick={CheckingFieldValues} >create a new product</button></div>
+
+                    <button className='buttonSubmit' type="button" onClick={CheckingFieldValues} >create a new product</button></div>
             </form>
 
             <div>
-                {error.length > 0 && error.map((err, index) => <div key={index}>{err}</div>)}
+                <div>{texts.map((err, index) => <li key={index}> {err}</li>)}</div>
+                
             </div>
+
+
         </div>
     )
 }

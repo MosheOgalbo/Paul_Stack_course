@@ -4,7 +4,7 @@ import ProductForDisplay from './ProductForDisplay'
 import MyContext from '../MyContext'
 
 
-const ProductsWindow = ({ AddProductToCart }) => {
+const ProductsWindow = ({ test }) => {
 
     const { listOpject, filteredProducts } = useContext(MyContext);
 
@@ -13,12 +13,13 @@ const ProductsWindow = ({ AddProductToCart }) => {
 
     const productListDisplay = customList.map((element, index) => (
         <ProductForDisplay
-            key={(index)}
+            key={index}
             title={element.title}
             image={element.image}
             category={element.category}
             price={element.price}
-            functioButton={() => AddProductToCart(element)}
+            element={element}
+            functioButton={test}
         />
     ));
 

@@ -21,3 +21,51 @@
     width: 100%;
     color:blueviolet;
 }
+
+
+/* הוספת קוד CSS כללי
+הקוד הזה בעצם מתייחס ל class ״hover-tooltip״ שבו נשתמש בהמשך.
+ יש לשלב את הקוד הזה פעם אחת בלבד. אפשר לעשות את זה בCSS עמוד / אתר או בכל מקום אחר שנוח לכם. */
+
+.hover-tooltip .elementor-icon-wrapper a:after {
+    background-color: #0E558D;
+    color: #fff;
+    border-radius: 100px;
+    padding: 6px 10px;
+    position: absolute;
+    right:50%;
+    bottom:-26px;
+    z-index: 10;
+    transition: 0.3s all;
+    transform: scale(1) translateX(50%);
+    opacity: 0;
+    min-width: 130px;
+}
+.hover-tooltip .elementor-icon-wrapper:after {
+    content: "";
+    background-color: #0E558D;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 50%;
+    bottom: -10px;
+    transform: rotate(45deg) scale(0) translateX(50%);
+    transition: 0.1s all;
+    opacity: 0;
+}
+.hover-tooltip .elementor-icon-wrapper:hover a:after{
+    transform: scale(1,1)  translateX(50%);
+    opacity: 1;
+}
+.hover-tooltip .elementor-icon-wrapper:hover:after{
+    transform: rotate(45deg) scale(1,1) translateX(50%);
+    bottom: -3px;
+    opacity: 1;
+    transition: 0.3s all;
+}
+
+selector .elementor-icon-wrapper a:after {
+    content: "In the title field, type more than 8 characters";
+    font-size: 14px;
+}
+/* ---------------------- */
