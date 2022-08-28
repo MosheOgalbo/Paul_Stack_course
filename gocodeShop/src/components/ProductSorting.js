@@ -1,18 +1,19 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import './ProductSorting.css';
-import MyValue from '../MyValue';
-import MyContext from '../MyContext'
+// import MyValue from '../MyValue';
+// import MyContext from '../MyContext'
 
 
 const ProductSorting = () => {
-    const { filterValueInArray } = useContext(MyValue);
-    const { listOpject, filterProductsByCategory } = useContext(MyContext)
+    
+    // // const { filterValueInArray } = useContext(MyValue);
+    // const { listOpject, filterProductsByCategory } = useContext(MyContext)
 
 
     return (
         <div className="collection-sort">
             <label>Sort by:</label>
-            <select  onChange={(e) => filterProductsByCategory(e.target.value)}>
+            <select >
                 <option value="Featured">Featured</option>
                 <option value="BestSelling">Best Selling</option>
                 <option value="Ascending-A-Z">Alphabetically, A-Z</option>

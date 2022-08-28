@@ -65,7 +65,7 @@ const ProductManagementForm = ({ categories, setListOpject ,listOpject}) => {
 
         console.log(categories)
         console.log(error)
-        {console.log(listOpject)}
+    
 
     }
     useEffect(() => {

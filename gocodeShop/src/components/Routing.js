@@ -7,9 +7,11 @@ import NotFound from "./NotFound";
 import MyContext from "../MyContext";
 import ProductManagementForm from './ProductManagementForm'
 import Toolbar from '@mui/material/Toolbar';
+import Drawer from '@mui/material/Drawer';
 
 
 const Routing = () => {
+
     let isLoggedIn = true
     const [listOpject, setListOpject] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -27,6 +29,7 @@ const Routing = () => {
     }, []);
 
     const addProductToCart = (product) => {
+        console.log(product);
         const productInCart = cart.findIndex((item) => item.id === product.id);
         if (productInCart === -1) {
             const newProductToCart = { ...product, amount: 1 };
@@ -38,13 +41,28 @@ const Routing = () => {
         }
     };
 
+    //לתקן
+    const removalProductToCart = (product) => {
+        console.log(product)
+        const productInCartIndex = cart.findIndex((item) => item.id === product.id);
+        if (productInCartIndex !== -1) {
+            if (product.amount > 1) {
+                const newCart = [...cart]
+                newCart[productInCartIndex].amount += -1
+                setCart(newCart)
+            } else {
+                const productInCart = cart.filter((item) => item.id !== product.id);
+                setCart(productInCart)
+            }
+        }
+    }
+
+
+
     useEffect(() => {
         console.log(cart);
     }, [cart]);
 
-    // useEffect(() => {
-    //     console.log(listOpject);
-    //   }, [listOpject]);
 
     const filterProductsByCategory = (category) => {
         if (category === "/") {
@@ -58,34 +76,36 @@ const Routing = () => {
     };
 
     const categories = listOpject.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index)
-    const isAdmin = true
 
+    // const isAdmin = true
+    //  let id =6
+    // const navigate = useNavigate()
     return (
         <MyContext.Provider
             value={{ listOpject, filterProductsByCategory, filteredProducts, cart, categories }}
         >
             <BrowserRouter>
 
-                <Toolbar variant="dense">
-                    <button value={"./"} >home</button>
-                </Toolbar>
 
-                {/* <Toolbar classes={"gutters"}> */}
+
+
+
 
                 <div>
                     <Link to="homePage"> home </Link>
-                    <Link to="main">main</Link>
+                    <Link to="/">main</Link>
                     <Link to="Admin"> Admin </Link>
                     <Link to="cart"> cart </Link>
+                    <Link to="product">2</Link>
                 </div>
                 {/* </Toolbar> */}
 
                 {isLoggedIn ? (
                     <Routes>
-                        <Route path="/" element={<App addProductToCart={addProductToCart} />} />
-                        <Route path="main" element={<App />} />
+                        <Route path="/" element={<App addProductToCart={addProductToCart} removalProductToCart={removalProductToCart} />} />
                         <Route path="cart" element={<Cart />} />
                         <Route path="Admin" element={<ProductManagementForm setListOpject={setListOpject} categories={categories} />} />
+                        {/* <Route path= "product" element={<ProductsID id={id}/>}/> */}
                         <Route path="homePage" element={<HomePage />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>

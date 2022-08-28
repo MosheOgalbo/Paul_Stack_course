@@ -14,8 +14,8 @@ const ProductFiltering = () => {
         <label>Filter by:</label>
         <select onChange={(e) => filterProductsByCategory(e.target.value)}>
             <option value="/">All Products</option>
-            {categories && categories.map(category => 
-            <option value={category}>{category}</option>)}
+            {categories && categories.map(category  => 
+            <option key={category.toString()} value={category}>{category}</option>)}
         </select>
     </div>)
     

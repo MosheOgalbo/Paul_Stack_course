@@ -6,7 +6,7 @@ import MyContext from './MyContext'
 import { useState,useEffect} from 'react';
 import React, { useContext } from 'react'
 
-function App({ addProductToCart }) {
+function App({ addProductToCart,removalProductToCart}) {
 
   const [filterValueInArray, setFilterValueInArray] = useState([]);
   const { listOpject } = useContext(MyContext);
@@ -18,9 +18,9 @@ function App({ addProductToCart }) {
 
   return (
     <MyValue.Provider value={{filterValueInArray}}>
-      <div className="flexColumn">
         <SearchField />
-        <ProductsWindow addProductToCart={addProductToCart} />
+      <div className="flexColumn">
+        <ProductsWindow addProductToCart={addProductToCart} removalProductToCart={removalProductToCart} />
       </div>
     </MyValue.Provider>
 

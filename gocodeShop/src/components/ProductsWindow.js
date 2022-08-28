@@ -4,10 +4,9 @@ import ProductForDisplay from './ProductForDisplay'
 import MyContext from '../MyContext'
 
 
-const ProductsWindow = ({ addProductToCart }) => {
+const ProductsWindow = ({ addProductToCart,removalProductToCart }) => {
 
     const { listOpject, filteredProducts } = useContext(MyContext);
-
     
     const customList = filteredProducts.length > 0 ? filteredProducts : listOpject
 
@@ -19,7 +18,9 @@ const ProductsWindow = ({ addProductToCart }) => {
             category={element.category}
             price={element.price}
             element={element}
-            functioButton={() => addProductToCart(element)}
+            addProductToCart={()=>addProductToCart(element)}
+            removalProductToCart={()=>removalProductToCart(element)}
+
         />
     ));
 

@@ -2,10 +2,10 @@ import React from 'react'
 import './SearchField.css'
 import ProductFiltering from './ProductFiltering'
 import ProductSorting from './ProductSorting'
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const SearchField = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
 
   return (
