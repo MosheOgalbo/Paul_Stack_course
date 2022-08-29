@@ -5,6 +5,7 @@ import MyValue from './MyValue';
 import MyContext from './MyContext'
 import { useState,useEffect} from 'react';
 import React, { useContext } from 'react'
+import { Link } from 'react-router-dom';
 
 function App({ addProductToCart,removalProductToCart}) {
 
@@ -18,6 +19,8 @@ function App({ addProductToCart,removalProductToCart}) {
 
   return (
     <MyValue.Provider value={{filterValueInArray}}>
+      
+     
         <SearchField />
       <div className="flexColumn">
         <ProductsWindow addProductToCart={addProductToCart} removalProductToCart={removalProductToCart} />

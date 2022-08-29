@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import MyContext from '../MyContext'
 
 const Cart = () => {
 
-  const { cart } = useContext(MyContext);
-  // useEffect({
+  const {cart} = useContext(MyContext);
 
-  // }, [])
+
+console.log(cart)
 
   return (
     <div>
