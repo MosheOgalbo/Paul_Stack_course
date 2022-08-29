@@ -1,8 +1,10 @@
 import React from 'react'
-
+import './HomePage.css'
 const HomePage = () => {
   return (
-    <div className='homeUrl'>The page under construction will later update the page</div>
+    <div className='homeUrl'>
+      The site is private and the purpose is to build a virtual store
+    </div>
   )
 }
 

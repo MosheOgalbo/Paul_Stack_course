@@ -82,14 +82,8 @@ const Routing = () => {
     return (
         <MyContext.Provider value={{ listOpject, filterProductsByCategory, filteredProducts, cart, categories }} >
             <BrowserRouter>
-            
                 <div className="HeaderTop">
                     <Header />
-                    <Link  to="/">main</Link>
-                    <Link to="Admin"> Admin </Link>
-                    {/* <Link to={'cart'}>cart</Link> */}
-                    {/* <Link to="homePage"> home </Link> */}
-
                 </div>
                 {/* </Toolbar> */}
 

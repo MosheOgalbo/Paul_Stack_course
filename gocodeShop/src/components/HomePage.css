@@ -1,0 +1,10 @@
+.homeUrl{
+    margin: 10%;
+    width: 50rem;
+    border: 3px solid #22ed5b;
+    padding: 10px;
+    text-align: center;
+    color: rgb(241, 7, 7);
+    font-size: 150%;
+    
+}
