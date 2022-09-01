@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LocalMallRoundedIcon from '@mui/icons-material/LocalMallRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Drawer from '@mui/material/Drawer';
 
 
 export default function Header() {
@@ -59,7 +60,7 @@ export default function Header() {
                     onClose={handleClose}
                     anchorOrigin={{
                         vertical: 'top',
-                        horizontal:'right',
+                        horizontal: 'right',
                     }}
                     transformOrigin={{
                         vertical: 'top',
@@ -77,6 +78,13 @@ export default function Header() {
                             about
                         </Button>
                     </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
+                        <Button >
+                            what's in the basket
+                        </Button>
+                    </MenuItem>
+
                     <MenuItem onClick={handleClose}>
                         <Button onClick={() => navigate('*')}>
                             login
@@ -101,6 +109,6 @@ export default function Header() {
                 </Button>
 
             </Toolbar>
-        </AppBar>
+        </AppBar >
     );
 }

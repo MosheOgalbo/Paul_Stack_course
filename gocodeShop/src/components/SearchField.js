@@ -15,8 +15,8 @@ const SearchField = () => {
       {/* <button onClick={() => navigate("cart")}>CART</button> */}
       </div>
       <div className="sort">
-        <ProductFiltering />
         <ProductSorting />
+        <ProductFiltering />
 
       </div>
     </nav>

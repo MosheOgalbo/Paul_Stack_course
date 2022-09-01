@@ -7,8 +7,8 @@ import NotFound from "./NotFound";
 import MyContext from "../MyContext";
 import ProductManagementForm from './ProductManagementForm'
 import Header from './Header';
-import Toolbar from '@mui/material/Toolbar';
 import Drawer from '@mui/material/Drawer';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 
 
 const Routing = () => {
@@ -75,37 +75,42 @@ const Routing = () => {
 
     const categories = listOpject.map(p => p.category).filter((value, index, array) => array.indexOf(value) === index)
 
-    // const isAdmin = true
-    //  let id =6
+        // const isAdmin = true
+        //  let id =6
 
 
-    return (
-        <MyContext.Provider value={{ listOpject, filterProductsByCategory, filteredProducts, cart, categories }} >
-            <BrowserRouter>
-                <div className="HeaderTop">
-                    <Header />
-                </div>
-                {/* </Toolbar> */}
 
-                {isLoggedIn ? (
-                    <Routes>
-                        <Route path="/" element={<App addProductToCart={addProductToCart} removalProductToCart={removalProductToCart} />} />
-                        <Route path="cart" element={<Cart />} />
-                        <Route path="Admin" element={<ProductManagementForm setListOpject={setListOpject} categories={categories} />} />
-                        {/* <Route path= "product" element={<ProductsID id={id}/>}/> */}
-                        <Route path="homePage" element={<HomePage />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>
-                ) :
 
-                    <Routes>
-                        <Route path="homePage" element={<HomePage />} />
-                        <Route path="*" element={<NotFound />} />
-                    </Routes>}
+return (
+    <MyContext.Provider value={{ listOpject, filterProductsByCategory, filteredProducts, cart, categories }} >
 
-            </BrowserRouter>
-        </MyContext.Provider>
-    );
+        <BrowserRouter>
+            <div className="HeaderTop">
+                <Header />
+                {/* <SwipeableDrawer /> */}
+            </div>
+
+
+
+            {isLoggedIn ? (
+                <Routes>
+                    <Route path="/" element={<App addProductToCart={addProductToCart} removalProductToCart={removalProductToCart} />} />
+                    <Route path="cart" element={<Cart />} />
+                    <Route path="Admin" element={<ProductManagementForm setListOpject={setListOpject} categories={categories} />} />
+                    {/* <Route path= "product" element={<ProductsID id={id}/>}/> */}
+                    <Route path="homePage" element={<HomePage />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            ) :
+
+                <Routes>
+                    <Route path="homePage" element={<HomePage />} />
+                    <Route path="*" element={<NotFound />} />
+                </Routes>}
+
+        </BrowserRouter>
+    </MyContext.Provider>
+);
 };
 
 export default Routing;

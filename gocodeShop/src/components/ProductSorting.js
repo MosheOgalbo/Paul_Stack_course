@@ -1,28 +1,30 @@
 import React from 'react'
 import './ProductSorting.css';
+import Slider from '@mui/material/Slider';
+
 // import MyValue from '../MyValue';
 // import MyContext from '../MyContext'
-
+let number = [1, 2, 3, 4]
 
 const ProductSorting = () => {
-    
+
     // // const { filterValueInArray } = useContext(MyValue);
     // const { listOpject, filterProductsByCategory } = useContext(MyContext)
 
 
     return (
         <div className="collection-sort">
-            <label>Sort by:</label>
-            <select >
-                <option value="Featured">Featured</option>
-                <option value="BestSelling">Best Selling</option>
-                <option value="Ascending-A-Z">Alphabetically, A-Z</option>
-                <option value="Descending-Z-A">Alphabetically, Z-A</option>
-                <option value="PriceLowToHigh">Price, low to high</option>
-                <option value="PriceHighToLow">Price, high to low</option>
-                <option value="DateNewToOld">Date, new to old</option>
-                <option value="/">Date, old to new</option>
-            </select>
+            <Slider
+               
+               getAriaLabel={() => 'Temperature range'}
+               // value={value}
+                onChangeCommitted='func'
+                valueLabelDisplay="auto"
+                size='small'
+                
+
+           
+            />
         </div>
     )
 }

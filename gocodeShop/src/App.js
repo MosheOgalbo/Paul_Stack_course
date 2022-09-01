@@ -22,9 +22,11 @@ function App({ addProductToCart,removalProductToCart}) {
       
      
         <SearchField />
+        
       <div className="flexColumn">
         <ProductsWindow addProductToCart={addProductToCart} removalProductToCart={removalProductToCart} />
       </div>
+      
     </MyValue.Provider>
 
   );
